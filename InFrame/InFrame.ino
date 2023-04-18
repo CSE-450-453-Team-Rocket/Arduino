@@ -66,7 +66,7 @@ typedef struct pneumaticsInfo{
 typedef struct activeInfo{
   bool left;
   bool right;
-}
+};
 
 typedef struct actuator{
   int actuator_pos = -1;
@@ -279,7 +279,7 @@ void actuators() {
 
 // Creates ban of accepted values
 bool hysterisa(int desired, int actual){
- return (actual + H_VALUE < desired || actual - H_VALUE > desired) ? true : false
+ return (actual + H_VALUE < desired || actual - H_VALUE > desired) ? true : false;
 }
 
 // Handles error in pressurization sequence - doesn't do much now lol
@@ -334,10 +334,10 @@ void pressurize(int waitTime, int presTime, int pres){
     timeElapsed++;
   }
   if (timeElapsed > WAITTIME){ //took too long to pressurize
-    perror(STAGE3);
+    perror(3);
   }
   digitalWrite(STAGE_3, true);
-  delay(100;)
+  delay(100);
 
   // Stage 4 - Turn off air compressor & hold desired pressure for set time interval
   digitalWrite(AIR_COMPRESSOR, false);
@@ -353,7 +353,7 @@ void pressurize(int waitTime, int presTime, int pres){
     timeElapsed++;
   }
   if (timeElapsed < PRESTIME){ //took too long to pressurize
-    perror(STAGE4);
+    perror(4);
   }
 
   // Stage 5 - Lock air into rocket drums, and depressurize for back flow
@@ -366,7 +366,7 @@ void setup() {
   pinMode(ACTUATOR_1_EXTEND_PIN, OUTPUT);
   pinMode(ACTUATOR_1_RETRACT_PIN, OUTPUT);
   serialSetUp();
-  SetUPpneumatics();
+  setUpPneumatics();
 }
 
 void loop() {
